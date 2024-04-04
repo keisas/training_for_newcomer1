@@ -1,5 +1,5 @@
 from unittest import TestCase
-
+import unittest
 import code
 from numpy.testing import assert_array_almost_equal
 
@@ -77,3 +77,5 @@ class TestALDH2(TestCase):
     self.assertEqual(len(judge), 2,
                      msg="課題1-5, translate()の出力が正しくありません。")
   
+if __name__ == "__main__":
+  unittest.main()
