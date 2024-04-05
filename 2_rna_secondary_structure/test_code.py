@@ -1,5 +1,5 @@
 from unittest import TestCase
-
+import unittest
 import code
 from numpy.testing import assert_array_almost_equal
 
@@ -31,3 +31,7 @@ class TestCode(TestCase):
     output = code.create_dotbracket_notation(self.fastafile)
     self.assertEqual(output, expected,
                      msg="課題2-4, create_dotbracket_notation()の出力が正しくありません。'('と')'の数が一致しているか確認してください。")
+    
+    
+if __name__ == "__main__":
+  unittest.main()
