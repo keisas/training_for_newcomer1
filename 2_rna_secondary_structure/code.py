@@ -43,8 +43,10 @@ def enumerate_continuous_pairs(fastafile: str, min_distance: int=4, min_length: 
     # ここまでは 2-2
     stems = []
     is_exist = [[False] * (len(seq)+1) for i in range(len(seq)+1)]
+    # 存在判定をO(1)で行うための準備
     for pair in pairs:
         is_exist[pair[0]][pair[1]] = True
+    
     for pair in sorted(pairs):
         now = pair
         stem_length = 1
@@ -61,12 +63,14 @@ def create_dotbracket_notation(fastafile: str, min_distance: int=4, min_length: 
     seq = list(SeqIO.parse(fastafile, "fasta"))[0].seq
     pairs = get_joinable_pairs(seq)
     pairs = list(filter(lambda p: p[0]+min_distance<p[1], pairs))
-
     stems = []
+    is_exist = [[False] * (len(seq)+1) for i in range(len(seq)+1)]
+    for pair in pairs:
+        is_exist[pair[0]][pair[1]] = True
     for pair in sorted(pairs):
         now = pair
         stem_length = 1
-        while (now[0]+1, now[1]-1) in pairs:
+        while is_exist[now[0]+1][now[1]-1]:
             now = (now[0]+1, now[1]-1)
             stem_length += 1
         if stem_length >= min_length:
@@ -85,12 +89,12 @@ if __name__ == "__main__":
     filepath = "data/AUCGCCAU.fasta"
     # filepath = "data/NM_014495.4.fasta"
     # 課題 2-1
-    # print(enumerate_pairs(filepath))
+    print(enumerate_pairs(filepath))
     # 課題 2-2
-    # print(enumerate_possible_pairs(filepath))
+    print(enumerate_possible_pairs(filepath))
     # 課題 2-3
     print(enumerate_continuous_pairs(filepath, 2))
     # 課題 2-4
-    # print(create_dotbracket_notation(filepath, 2))
+    print(create_dotbracket_notation(filepath, 2))
 
 

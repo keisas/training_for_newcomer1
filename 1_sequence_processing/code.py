@@ -44,7 +44,7 @@ def search_motif(fastafile: str, motif: str) -> List[str]:
     for seq_record in SeqIO.parse(fastafile, "fasta"):
         seq = seq_record.seq
         inv_complement = seq.reverse_complement()
-    iters = [f'F{i.span()[0]+1}' for i in re.finditer(motif, str(seq))]
+    iters     = [f'F{i.span()[0]+1}'          for i in re.finditer(motif, str(seq))]
     inv_iters = [f'R{len(seq) - i.span()[0]}' for i in re.finditer(motif, str(inv_complement))]
     return iters + inv_iters
 
@@ -74,8 +74,8 @@ def translate(fastafile: str) -> List[str]:
 
 if __name__ == "__main__":
     # filepath = "data/NT_113952.1.fasta"
-    filepath = "data/NC_000012.fasta"
-    # filepath = "data/ATGCCGT.fasta"
+    # filepath = "data/NC_000012.fasta"
+    filepath = "data/ATGCCGT.fasta"
     # 課題 1-1
     print(base_count(filepath))
     # 課題 1-2
