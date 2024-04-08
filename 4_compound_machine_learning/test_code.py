@@ -1,5 +1,5 @@
 from unittest import TestCase
-
+import unittest
 import code
 from numpy.testing import assert_array_almost_equal
 
@@ -36,3 +36,6 @@ class TestPrediction(TestCase):
     output = code.grid_search(self.filepath)
     self.assertAlmostEqual(output, expected, places=2,
                            msg='課題4-4, grid_search()の出力が正しくありません。')
+
+if __name__ == "__main__":
+  unittest.main()
