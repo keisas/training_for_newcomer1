@@ -34,8 +34,12 @@ def calc_gc_content(fastafile: str, window: int=1000, step: int=300) -> Union[np
         seq = seq_record.seq
     gc_content = [round(100*gc_percent_from_sequence(seq[i:i+window]), 1) for i in range(0, len(seq) - window + 1, step)]
     # 値を出力するところまで。matplotlibを使う部分は別途実装してください。
+    print(len(gc_content))
     plt.plot(gc_content)
-    plt.show()
+    plt.title(f'GC% ({fastafile.split("/")[-1]})')
+    plt.xlabel(f'step (step_width={step}bp, window_width={window}bp)')
+    plt.ylabel("GC_content (%)")
+    # plt.show()
 
     return gc_content
 
