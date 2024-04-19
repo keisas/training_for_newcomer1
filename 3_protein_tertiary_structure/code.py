@@ -1,19 +1,22 @@
 from typing import List, Union
-import numpy.typing as npt
+
 import numpy as np
+import numpy.typing as npt
+
 
 def calc_chain_center(pdbfile: str, chain: str) -> Union[npt.NDArray[np.float_], List[float]]:
     # 課題 3-2
     return np.zeros(3)
 
+
 def calc_residue_center(pdbfile: str, chain: str, resname: str) -> Union[npt.NDArray[np.float_], List[float]]:
     # 課題 3-3
     return np.zeros(3)
 
+
 def calc_min_distance(pdbfile: str, chain: str, resname: str) -> float:
     # 課題 3-4
     return 0.0
-
 
 
 if __name__ == "__main__":
